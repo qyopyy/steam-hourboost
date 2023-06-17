@@ -1,24 +1,22 @@
-const steamUser = require('steam-user');
-const steamTotp = require('steam-totp');
+const SteamUser = require('steam-user');
+const SteamTotp = require('steam-totp');
 const keep_alive = require('./keep_alive.js');
 
-var username = process.env.username;
-var password = process.env.password;
-var shared_secret = process.env.shared_secret;
+const username = process.env.username;
+const password = process.env.password;
 
-var games = [730, 1366800];  // Enter here AppIDs of the needed games
-var status = 7;  // 1 - online, 7 - invisible
-var hideRecentActivity = true;  // Set to true to hide recent activity
+const games = [730, 1366800];  // Enter here AppIDs of the desired games
+const status = 1;  // 1 - online, 7 - invisible
+const hideRecentActivity = true;  // Set to true to hide recent activity
 
-user = new steamUser();
+const user = new SteamUser();
 user.logOn({
   "accountName": username,
   "password": password,
-  "twoFactorCode": steamTotp.generateAuthCode(shared_secret)
 });
 
 user.on('loggedOn', () => {
-  if (user.steamID != null) console.log(user.steamID + ' - Successfully logged on');
+  console.log(user.steamID.getSteam3RenderedID() + ' - Successfully logged on');
 
   user.setPersona(status);  // Set the persona status
 
@@ -26,6 +24,9 @@ user.on('loggedOn', () => {
   user.gamesPlayed(games);
 
   if (hideRecentActivity) {
-    user.gamesPlayed([]);  // Hide recent activity
+    user.requestFreeLicense(games);  // Hide recent activity
   }
 });
+
+keep_alive();  // Keep the script running
+
