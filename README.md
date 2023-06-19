@@ -1,7 +1,7 @@
 # Steam Hour Boost!
 Steam Game Hour Boost with hide recent activity! 24/7
 
-<span><a href="[https://replit.com/@util/Codemirror-CSS-color-picker](https://replit.com/@qyopy/Steam-Hour-Booster)" title="Run on Replit badge"><img src="https://replit.com/badge/github/replit/Steam-Hour-Booster" alt="Run on Replit badge" /></a></span>
+<span><a href="[https://replit.com/@qyopy/Steam-Hour-Booster](https://replit.com/@qyopy/Steam-Hour-Booster)" title="Run on Replit badge"><img src="https://replit.com/badge/github/replit/Steam-Hour-Booster" alt="Run on Replit badge" /></a></span>
 
 ### Usage
 
