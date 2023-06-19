@@ -1,12 +1,15 @@
 const SteamUser = require('steam-user');
 const SteamTotp = require('steam-totp');
-const keep_alive = require('./keep_alive.js');
+const express = require('express');
+
+const app = express();
+const port = process.env.PORT || 3000;
 
 const username = process.env.username;
 const password = process.env.password;
 
-const games = [730, 1366800];  // Enter here AppIDs of the desired games
-const status = 1;  // 1 - online, 7 - invisible
+const games = [730, 1366800, 440];  // Enter here AppIDs of the desired games
+const status = 7;  // 1 - online, 7 - invisible
 const hideRecentActivity = true;  // Set to true to hide recent activity
 
 const user = new SteamUser();
@@ -28,5 +31,11 @@ user.on('loggedOn', () => {
   }
 });
 
-keep_alive();  // Keep the script running
+app.get('/', (req, res) => {
+  res.send('Steam farming bot is running.');
+});
+
+app.listen(port, () => {
+  console.log(`Server is running on port ${port}`);
+});
 
